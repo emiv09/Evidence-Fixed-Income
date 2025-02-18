@@ -1,0 +1,1 @@
+select * from absolute_treasury.series_info

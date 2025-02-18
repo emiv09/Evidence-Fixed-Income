@@ -1,0 +1,5 @@
+# This file was automatically generated
+name: US_bonds
+type: duckdb
+options:
+  filename: absolute_treasury.db
