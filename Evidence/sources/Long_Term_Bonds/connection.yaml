@@ -1,0 +1,5 @@
+# This file was automatically generated
+name: Long_Term_Bonds
+type: duckdb
+options:
+  filename: long_term_bonds.db
