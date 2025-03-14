@@ -1,0 +1,1 @@
+select * from short_term_bonds.observations

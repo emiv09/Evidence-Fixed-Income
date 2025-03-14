@@ -1,0 +1,5 @@
+# This file was automatically generated
+name: short_term_income
+type: duckdb
+options:
+  filename: short_term_bonds.db
