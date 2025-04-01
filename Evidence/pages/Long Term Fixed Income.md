@@ -161,6 +161,51 @@ Comparing the yields of <Value data={previous_month} fmt="mmmm, yyyy"/> to <Valu
 </DataTable>
 
 
+```sql gs20_market_price
+WITH initial_data AS (
+    SELECT
+        series_id,
+        first(yield) as coupon_rate,
+        first(recorded_at) as buy_moment,
+        100 as initial_market_price
+    FROM long_term_income.observations
+    WHERE series_id = 'GS20'
+    GROUP BY series_id
+)
+
+SELECT 
+    s.recorded_at as recorded_at,
+    s.yield,
+    s.series_id,
+    i.coupon_rate,
+    i.buy_moment,
+    ROUND(ROUND(i.coupon_rate / s.yield, 2) * i.initial_market_price,2) AS market_price
+FROM long_term_income.observations s
+JOIN initial_data i ON s.series_id = i.series_id
+WHERE s.series_id = 'GS20'
+```
+
+<LineChart
+    data={gs20_market_price}
+    y = market_price
+    yfmt = usd
+    y2 = yield
+    y2SeriesType=bar
+    xFmt = "mmmm, yyyy"
+/>
+
+<LineChart
+    data={gs20_market_price}
+    y = market_price 
+    yfmt = usd
+    y2 = yield
+    y2fmt = pct
+    xFmt = "mmmm, yyyy"
+/>
+
+
+
+
 
 
 
